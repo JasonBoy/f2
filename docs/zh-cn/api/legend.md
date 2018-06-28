@@ -1,9 +1,12 @@
+
 # Legend
 
-F2 图例的生成是由图形语法中的图形属性决定的，我们会根据图形属性映射以及数据的类型自动生成不同类型的图例： color, size 这两个图形属性如果判断接收的参数是数据源的字段时，会自动生成不同的图例：
+---
 
-1. color, 会赋予不同的图例项不同的颜色来区分图形，如果该字段是分类类型，则会生成离散图例，如果是连续类型，则会生成连续图例（本期未支持）
-2. size, 在图例上显示图形的大小 （本期未支持）
+F2 图例的生成是由图形语法中的图形属性决定的，我们会根据图形属性映射以及数据的类型自动生成不同类型的图例：color, size 这两个图形属性如果判断接收的参数是数据源的字段时，会自动生成不同的图例：
+
+1. color，会赋予不同的图例项不同的颜色来区分图形，如果该字段是分类类型，则会生成离散图例，如果是连续类型，则会生成连续图例（本期未支持）
+2. size，在图例上显示图形的大小 （本期未支持）
 
 
 ## 如何引入图例
@@ -13,7 +16,7 @@ F2 图例的生成是由图形语法中的图形属性决定的，我们会根�
 ```js
 const F2 = require('@antv/f2/lib/core');
 const Legend = require('@antv/f2/lib/plugin/legend');
-Chart.plugins.register(Legend); // 方式一：全局注册 
+Chart.plugins.register(Legend); // 方式一：全局注册
 
 // 方式二：具体的 chart 实例注册
 const chart = new Chart({
@@ -72,7 +75,7 @@ chart.legend('gender', {
 
 当 `position` 为 'left'、'right' 时生效，用于设置垂直方向上图例的对齐方式，可设置的值为：'top'、'middle'、'bottom'，默认为 'middle'，居中对齐。
 
-| center（默认） | top | bottom |
+| middle（默认） | top | bottom |
 | -------- | -------- | -------- |
 | ![undefined](https://gw.alipayobjects.com/zos/skylark/3e351090-9e91-44b7-9c79-9fae1576a83e/2018/png/90d4ab82-0baa-429c-a92a-eb06c51e9b0d.png)  | ![undefined](https://gw.alipayobjects.com/zos/skylark/a6d8e7cd-951b-409e-96c7-b76a49ec0405/2018/png/6504d001-3bd8-4e3d-acd9-0c1fda595a0f.png)  | ![undefined](https://gw.alipayobjects.com/zos/skylark/e5a77ada-f4bc-4acd-9611-aac5f9769a41/2018/png/795f70b0-89bc-4b1b-a8d6-b26b543521c4.png)   |
 
@@ -122,9 +125,15 @@ titleStyle: {
 
 marker 和文本之间的间距，默认值为 6px。
 
-- `unCheckColor`: String
+- `unCheckStyle`: Object
 
-用于取消选中的图例 marker 以及文本的颜色。
+用于设置取消选中的图例 marker 以及文本的样式。默认值为：
+
+```js
+unCheckStyle: {
+  fill: '#bfbfbf'
+}
+```
 
 - `itemFormatter`: Function
 
@@ -171,12 +180,12 @@ marker: {
  * @param  {number} y   该 marker 的纵轴坐标
  * @param  {number} r   该 marker 的半径大小
  * @param  {object} ctx canvas 的上下文对象
- * @return {null}     
+ * @return {null}
  */
 marker(x, y, r, ctx) {}
 ```
 
-以下代码绘制了如图所示的 marker：<img src="https://gw.alipayobjects.com/zos/skylark/041d2fef-a068-4012-ac28-2439e15bdbda/2018/png/c541e6b3-8f37-4cc9-b8bb-fd97345ef7da.png" style="width: 194px;"> 
+以下代码绘制了如图所示的 marker：<img src="https://gw.alipayobjects.com/zos/skylark/041d2fef-a068-4012-ac28-2439e15bdbda/2018/png/c541e6b3-8f37-4cc9-b8bb-fd97345ef7da.png" style="width: 10%;">
 
 ```js
 chart.legend('city', {
@@ -194,7 +203,7 @@ chart.legend('city', {
 
 - `nameStyle`: Object
 
-<img src="https://gw.alipayobjects.com/zos/skylark/519b406c-f6c6-4f6b-adda-7f25a927aa53/2018/png/2ac06b01-85ec-45fa-9c53-aa742108df9e.png" style="width: 50%;">
+<img src="https://gw.alipayobjects.com/zos/skylark/519b406c-f6c6-4f6b-adda-7f25a927aa53/2018/png/2ac06b01-85ec-45fa-9c53-aa742108df9e.png" style="width: 20%;">
 
 用于设置图例项的文本样式，详见[绘图属性](./canvas.md)。
 
@@ -222,11 +231,15 @@ valueStyle: {
 }
 ```
 
+- `joinString`: String
+
+设置图例项中 name 和 value 的连接字符，默认为 ':'。
+
 - `triggerOn`: String/Function
 
 图例筛选行为的触发事件，默认为 `click`。
 
-1. String 类型 
+1. String 类型
 
 定义别的事件类型。
 
@@ -247,6 +260,18 @@ triggerOn(method, type) {
 
 **注意该属性只能使用 `chart.legend({})` 方式或者 Global 主题中设置。**
 
+- `selectedMode`: String
+
+设置图例项的选中模式，提供两种模式：
+
+```js
+// 默认模式，多选
+selectedMode: 'multiple'
+
+// 单选模式
+selectedMode: 'single'
+```
+
 - `clickable`: Boolean
 
 设置图例项是否允许点击，默认为 true，即允许点击。
@@ -261,17 +286,14 @@ triggerOn(method, type) {
  * @param  {object} ev 事件对象
  * @return {null}
  */
-onClick: ev => {
-  // clickedItem: G.Group 类型，表示被选中图例像，通过 clickedItem.get() 方法获取该对象的属性
-  const { clickedItem } = ev;
-}
+onClick: ev => {}
 ```
 
 - `custom`: Boolean
 
 默认为 false，当 `custom` 为 true，表示不使用默认生成的图例，允许用户自定义图例，包括具体的图例项以及点击交互行为。
 
-自定义图例时需要用户自己声明具体的图例项 `items`(该属性是一个对象数组，数组中每一项为一个对象类型，结构为：`{ name: '', marker:{ fill: 'red' } }`)以及图例项的 `onClick` 事件。
+自定义图例时需要用户自己声明具体的图例项 `items`(该属性是一个对象数组，数组中每一项为一个对象类型，结构为：`{ name: '', value: 12, marker:{ fill: 'red' } }, checked: true`)以及图例项的 `onClick` 事件。
 
 ```js
 chart.legend({ custom: true, items: [], onClick(){} });
@@ -311,3 +333,7 @@ chart.legend({
   ]
 });
 ```
+
+## DEMO
+
+详见 [Legend 使用](https://antv.alipay.com/zh-cn/f2/3.x/demo/index.html#_Legend-%E4%BD%BF%E7%94%A8)。

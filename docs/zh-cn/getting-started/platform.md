@@ -13,28 +13,23 @@ Tooltip 组件 | ✔︎ | | ✔︎ |
 动画 | ✔︎ |   | ✔︎ |
 
 
-下面就两个典型场景进行说明：
-
-## Node
+## Node 端渲染说明
 
 将 F2 运行于 node 的后台服务上，可以提供强大的服务端渲染可视化图表的能力，这种能力可以应用于生成离线报表、图文 pdf 等场景。
 
-目前 F2 在 node 环境中能够提供完整的图表绘制能力，但无法提供事件、交互以及动画功能（**所以在试验官网 demo 时请删除 chart.tooltip() 以及 .animate() 相关的代码哦**）。具体的使用方法如下:
+目前 F2 在 node 环境中能够提供完整的图表绘制能力，但无法提供事件、交互以及动画功能（<span data-type="color" style="color: rgb(255, 255, 255);"><span data-type="background" style="background-color: rgb(255, 169, 64);">所以在试验官网 demo 时请删除 chart.tooltip() 以及 .animate() 相关的代码哦</span></span>）。具体的使用方法如下:
 
-1. **首先安装模块**: [node-canvas](https://github.com/Automattic/node-canvas)
+1. **首先安装模块**，[node-canvas](https://github.com/Automattic/node-canvas)
 
-该模块提供了在 node 中实现 canvas 渲染的能力，结合该模块，就可以实现 F2 在 node 端的图表渲染了
+  该模块提供了在 node 中实现 canvas 渲染的能力，结合该模块，就可以实现 F2 在 node 端的图表渲染了
 
-```Bash
+```bash
 npm install canvas
 ```
 
-2. **引入 F2**，这里需要说明的是：node 端不支持动画、事件以及 Tooltip，所以在引入 F2 时请选择[按需引入](https://antv.alipay.com/zh-cn/f2/3.x/tutorial/require-on-demand.html)
-以避免上述模块的引入，这样也能够使得 F2 的代码体量更小巧。为了使用更便利，建议将以下代码封装成通用模块。
+2. **引入 F2**，这里需要说明的是：node 端不支持动画、事件以及 Tooltip，所以在引入 F2 时请选择[按需引入](./require-on-demand.md)以避免上述模块的引入，这样也能够使得 F2 的代码体量更小巧。为了使用更便利，建议将以下代码封装成通用模块。
 
-> 注意：请安装 3.1.4-beta.1 及以上版本！
-
-```JavaScript
+```javascript
 const F2 = require('@antv/f2/lib/core'); // 引入核心包
 
 require('@antv/f2/lib/geom/'); // 几何标记对象
@@ -53,14 +48,14 @@ F2.Chart.plugins.register([ Legend, Guide ]); // 注册以上插件
 
 3. **创建一个 canvas 对象**
 
-```JavaScript
+```javascript
 const Canvas = require('canvas');
 const canvas = Canvas.createCanvas(400, 267);
 ```
 
-4. 使用 F2 绘制图表，**需要注意的是在创建 Chart 对象时传入的属性**，下面两种方式 **width** 和 **height** 属性都是**必须设置的**
+4. 使用 F2 绘制图表，**需要注意的是在创建 Chart 对象时传入的属性**，下面两种方式 **width** 和 **height** 属性都是<span data-type="color" style="color: rgb(250, 84, 28);">必须设置的</span>
 
-```JavaScript
+```javascript
 // 第一种方式直接传入 canvas
 const chart = new F2.Chart({
   el: canvas, // 将第三步创建的 canvas 对象传入
@@ -76,13 +71,12 @@ const chart = new F2.Chart({
 });
 ```
 
-
 下面是 F2 在 node 端绘制饼图的完整代码:
 
-<img src="https://cdn-pri.yuque.com/lark/0/2018/png/514/1524314241103-865e6682-9508-4bb3-9f30-676bf0042d58.png">
+![pie.png | left | 375x260](https://cdn.yuque.com/lark/0/2018/png/514/1524314241103-865e6682-9508-4bb3-9f30-676bf0042d58.png "")
 
 
-```JavaScript
+```javascript
 const fs = require('fs');
 const path = require('path');
 
@@ -154,6 +148,27 @@ drawPie();
 canvas.createPNGStream().pipe(fs.createWriteStream(path.join(__dirname, 'pie.png'))) // 导出图片
 ```
 
+### 不同设备分辨率适配方案
+
+适配方案很简单，假设当前设备的像素比为 2，那么在创建 F2 图表的时候，设置下 `pixelRatio` 属性即可：
+
+```js
+const chart = new F2.Chart({
+  el: canvas,
+  width: 375,
+  height: 260,
+  padding: [ 45, 'auto', 'auto' ],
+  pixelRatio: 2
+});
+```
+
+这里我们设置的画布宽高为 375 * 260，在设置了 `pixelRatio: 2` 后生成的图表宽高会相应放大 2 倍，尺寸为 750 * 520，这个时候在显示图片时，将图片的实际显示大小设置为 375 * 260，就可以保证图片的清晰显示了，如下图所示：
+
+- 屏幕分辨率： 2
+- 图片实际大小：750 * 520
+- 图片的样式(显示大小)： `style="width: 375px;height: 260px;"`
+
+<img src="https://gw.alipayobjects.com/zos/rmsportal/IWrhQtTcEaBxGnXsPwiP.png" style="width: 375px;height: 260px;">
 
 ## 小程序
 
@@ -161,24 +176,20 @@ canvas.createPNGStream().pipe(fs.createWriteStream(path.join(__dirname, 'pie.png
 
 详见：[《聊一聊 F2 与小程序》](https://yuque.com/antv/blog/bg9sxf)。
 
-### my-f2
+### 支付宝小程序
 
 F2 的支付宝小程序版本（待支付宝支持自定义组件后，会基于此库提供一个支付宝小程序的组件）。
 
-- GitHub: https://github.com/antvis/my-f2
-- 使用文档：[这里](https://github.com/antvis/my-f2/blob/master/README.md)
-- Demos:  [github](https://github.com/antvis/mini-program-f2-demos/tree/master/my-charts)，用户可以通过蚂蚁开发者工具，直接打开此项目进行体验感受。
+* github：[https://github.com/antvis/my-f2](https://github.com/antvis/my-f2)
+* 使用文档：[这里](https://github.com/antvis/my-f2/blob/master/README.md)
+* Demos:  [github](https://github.com/antvis/mini-program-f2-demos/tree/master/my-charts)，用户可以通过[蚂蚁开发者工具](https://docs.alipay.com/mini/ide/overview)直接打开此项目进行体验感受。
 
-### wx-f2
+### 微信小程序
+
 F2 的微信小程序图表组件
 
-- GitHub: https://github.com/antvis/wx-f2
-- 使用文档：[这里](https://github.com/antvis/wx-f2/blob/master/README.md)
-- Demos: 源码位于项目 pages/charts/ 目录下，可以使用微信开发者工具打开 wx-f2 项目进行体验感受，也可以打开微信扫描以下二维码进行体验：
+* github：[https://github.com/antvis/wx-f2](https://github.com/antvis/wx-f2)
+* 使用文档：[这里](https://github.com/antvis/wx-f2/blob/master/README.md)
+* Demos: 源码位于项目 pages/charts/ 目录下，可以使用[微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html?t=2018412)打开[ wx-f2](https://github.com/antvis/wx-f2) 项目进行体验感受，也可以打开微信扫描以下二维码进行体验：
 
-<img src="https://cdn-pri.yuque.com/lark/0/2018/png/514/1524314704711-b1919567-c26a-42e0-9fc6-586e95f0990f.png">
-
-
-
-
-
+![image.png | left | 344x344](https://cdn.yuque.com/lark/0/2018/png/514/1524555862386-7010f1b3-7100-4a84-bc97-ec4a6560155d.png "")

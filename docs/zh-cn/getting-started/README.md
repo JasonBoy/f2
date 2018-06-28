@@ -1,21 +1,19 @@
-# Getting Started
+# 快速开始
 
-Let's get started using F2!
-
-First, we need to have a canvas in our page.
+首先我们需要在页面创建一个 `<canvas></canvas>` 标签。
 
 ```html
 <canvas id="myChart"></canvas>
 ```
 
-Now that we have a canvas we can use, we need to include F2 in our page.
+之后我们需要将 F2 引入：
 
 ```html
 <!-- online -->
 <script src="https://gw.alipayobjects.com/os/antv/assets/f2/3.1.1/f2.js"></script>
 ```
 
-Now, we can create a chart. We add a script to our page:
+以上两部就绪之后就可以开始使用 F2 绘制图表了:
 
 ```javascript
 const data = [
@@ -42,6 +40,6 @@ chart.render();
 
 <img src="https://gw.alipayobjects.com/zos/rmsportal/vNBNIGvCiIwqLwaYjWUy.png" width="375">
 
-It's that easy to get started using F2! From here you can explore the many options that can help you customize your charts with scales, tooltip, axis, geoms, legends and much more.
+使用 F2 创建图表就是这么容易，从现在起开始探索 F2 更多的功能吧！~
 
-There are many examples of F2 that are available in the AntV [demos](https://antv.alipay.com/zh-cn/f2/3.x/demo/index.html).
+在 AntV 官网可查看更多 F2 的图表 [demos](https://antv.alipay.com/zh-cn/f2/3.x/demo/index.html)。

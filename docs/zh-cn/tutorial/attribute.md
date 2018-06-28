@@ -60,7 +60,6 @@ chart.point().position('cut*price');
 
 (x1, y1) 这样的数值对，最后就会被转换为画布上对应的坐标点。
 
-
 ## color
 
 从可视化编码的角度对颜色进行分析，可以将颜色分为亮度、饱和度和色调三个视觉通道，其中前两个可以认为是用于编码定量和定序数据的视觉通道，而色调属于编码定性数据的视觉通道。而在 F2 中并不如此详细区分，统一使用 color 方法进行映射配置。
@@ -85,7 +84,6 @@ color 支持的映射语法如下：
 ### 连续数据的颜色映射
 
 对于连续的数据，我们可以为 color 指定颜色渐变的路径，以可视化数据在某一范围的变化趋势。
-
 `.color('sales', '#BAE7FF-#1890FF-#0050B3')`
 
 <img src="https://gw.alipayobjects.com/zos/rmsportal/heFYrrRgMWDvWsAbsJRq.png"  style="width: 359px;">
@@ -128,11 +126,11 @@ chart.point().position('x*y').color('level*value', (level, value) => {
 - shape('fields', callback)，使用回调函数获取 shape，用于个性化的 shape 定制，可以根据单个或者多个字段确定；
 - shape('circle')，指定常量，将所有数据值映射到固定的 shape。
 
-另外 F2 提供了自定义 shape 的功能，用户可以自己绘制需要的 shape，详见[自定义 shape](../developer/shape.md)。
+另外 F2 提供了自定义 shape 的功能，用户可以自己绘制需要的 shape，详见[自定义 shape](../develop/shape.md)。
 
 ### geom 和 shape
 
-使用几何标记实现各种图表类型时，对于每一种几何标记来说，图形在绘制的时候有不同的形状（shape)，在[几何标记](./geometry.`md) 章节已列出了目前 F2 提供的 geom 默认支持的 shape。
+使用几何标记实现各种图表类型时，对于每一种几何标记来说，图形在绘制的时候有不同的形状（shape)，在[几何标记](./geometry.md) 章节已列出了目前 F2 提供的 geom 默认支持的 shape。
 
 `.shape('cat', [ 'circle', 'rect' ])`
 
@@ -202,7 +200,7 @@ chart.point().position('x*y').size('level*text', (level, text) => {
 前面提到过，每种几何标记支持的视觉通道有所差异，数据和视觉通道的映射关系也不完全相同。
 下表列出了各个 geom 几何标记对各个图形属性的支持情况：
 
-几何标记 | position | color | size | shape 
+几何标记 | position | color | size | shape
 -------|---------|-----|---|---|
 point |支持|支持|支持|支持
 path、line |支持|支持|支持|支持
@@ -210,4 +208,3 @@ area|支持|支持|`不支持`|支持
 interval|支持|支持|支持|支持
 polygon|支持|支持|`不支持`|支持
 schema|支持|支持|支持|支持
-

@@ -1,5 +1,7 @@
 # Tooltip
 
+---
+
 Tooltip 作为 F2 的插件，如要使用，请将其注册如 Chart 类或者 chart 实例。
 
 如果你默认加载的是完整的 F2 代码，那么 Tooltip 已经注册至 Chart 类中，如果您采用动态引用的策略，那么需要先将该组件注册入 Chart 类或者 Chart 实例。
@@ -7,7 +9,7 @@ Tooltip 作为 F2 的插件，如要使用，请将其注册如 Chart 类或者 
 ```js
 const F2 = require('@antv/f2/lib/core');
 const Tooltip = require('@antv/f2/lib/plugin/tooltip');
-Chart.plugins.register(Tooltip); // 方式一：全局注册 
+Chart.plugins.register(Tooltip); // 方式一：全局注册
 
 // 方式二：具体的 chart 实例注册
 const chart = new Chart({
@@ -80,11 +82,11 @@ chart.tooltip({
 
 ## 实例
 
-在移动端，我们经常会将 tooltip 同 legend 一起使用，这个时候我们就可以通过配置 `custom` 属性来实现。
+在移动端，我们经常会将 tooltip 同 legend 一起使用，这个时候我们就可以通过配置 `custom` 属性来实现。(手机端观看)
 
-<img src="https://gw.alipayobjects.com/zos/rmsportal/RXIEitSiRAzZUDGsYDxm.gif">
+<canvas id="mountNode"></canvas>
 
-```js
+```js+
     const data =[
       { name: 'London', 月份: 'Jan.', 月均降雨量: 18.9 },
       { name: 'London', 月份: 'Feb.', 月均降雨量: 28.8 },
@@ -106,12 +108,13 @@ chart.tooltip({
     const chart = new F2.Chart({
       id: 'mountNode',
       pixelRatio: window.devicePixelRatio,
-      width: window.innerWidth,
+      width: 400,
       height: 260
     });
     chart.source(data);
     chart.tooltip({
-      custom(obj) {
+      custom: true, // 自定义 tooltip 内容框
+      onChange: function(obj) {
         const legend = chart.get('legendController').legends.top[0]; // 获取 legend
         const tooltipItems = obj.items;
         const legendItems = legend.items;
@@ -142,3 +145,6 @@ chart.tooltip({
     chart.render();
 ```
 
+## DEMO
+
+详见 [Tooltip 使用](https://antv.alipay.com/zh-cn/f2/3.x/demo/index.html#_Tooltip-%E4%BD%BF%E7%94%A8)。

@@ -1,5 +1,7 @@
 # Chart
 
+---
+
 ## 创建 chart 实例
 
 绘制图表前必须创建一个 `<canvas>` 元素或者一个 canvas 上下文环境。
@@ -96,7 +98,7 @@ const chart = new F2.Chart({
 
 const chart = new F2.Chart({
   id: 'c1',
-  padding: [ 40, 10, 'auto', 'auto' ]  // 指定几个方向自动计算 padding 
+  padding: [ 40, 10, 'auto', 'auto' ]  // 指定几个方向自动计算 padding
 });
 ```
 
@@ -126,7 +128,7 @@ const chart = new F2.Chart({
 - 描述：为 chart 实例注册插件
 - 默认值：null
 
-更多关于插件的使用，详见[Plugin](../developer/plugin.md)。
+更多关于插件的使用，详见[Plugin](../develop/plugin.md)。
 
 ### `animate`
 
@@ -134,11 +136,39 @@ const chart = new F2.Chart({
 - 描述：是否关闭 chart 的动画
 - 默认值：null
 
+### `limitInPlot`
+
+> F2 3.2 版本提供该属性，目前请使用 3.2.0-beta.5 版本
+
+- 参数类型: Boolean
+- 描述：是否将图形限制在绘图区域内，在进行图表交互时经常用到，参见 [demo](https://antv.alipay.com/zh-cn/f2/3.x/demo/interaction/x-pan.html)
+- 默认值：false
+
+
 ## 方法
+
+### `get`
+
+* 描述：获取属性
+* 返回：返回对应的属性值
+
+该方法用于获取 chart 内部的属性，如 `chart.get('width')`，包含的属性如下：
+
+| 属性名  | 解释  |
+| -------- | -------- |
+| id    | 对应 canvas 的 id |
+| padding     | 当前的图表绘图区域和画布边框的间距  |
+| data     | 原始数据 |
+| width     | 图表宽度 |
+| height     | 图表高度 |
+| pixelRatio  | 图表的屏幕像素比 |
+| el     | 对应 canvas 的 dom 对象 |
+| canvas     | 对应的 canvas 对象（G.Canvas） |
+| geoms     | chart render 之后可获取，返回所有的 geoms 对象 |
 
 ### `source`
 
-* 描述： 装载数据
+* 描述：装载数据
 * 返回：当前 chart 实例
 
 #### `chart.source(data)`
@@ -194,7 +224,7 @@ const data = [
 chart.scale('x', {
   type: 'cat', // 声明 type 字段为分类类型
   values: [ 'A', 'B', 'C' ] // 重新显示的值
-  alias: '类型' // 设置属性的别名  
+  alias: '类型' // 设置属性的别名
 });
 ```
 
@@ -226,18 +256,9 @@ chart.scale({
 });
 ```
 
-### `animate`
-
-`chart.animate()` 
-
-* 描述：配置图表的动画
-* 返回：当前 chart 实例
-
-详见 [Animation](./animation.md)。
-
 ### `coord`
 
-`chart.coord()` 
+`chart.coord()`
 
 * 描述：配置坐标系
 * 返回：当前 chart 实例
@@ -246,7 +267,7 @@ chart.scale({
 
 ### `axis`
 
-`chart.axis()` 
+`chart.axis()`
 
 * 描述：配置坐标轴
 * 返回：当前 chart 实例
@@ -264,7 +285,7 @@ chart.scale({
 
 ### `tooltip`
 
-`chart.tooltip()` 
+`chart.tooltip()`
 
 * 描述：配置提示信息
 * 返回：当前 chart 实例
@@ -273,12 +294,21 @@ chart.scale({
 
 ### `guide`
 
-`chart.guide()` 
+`chart.guide()`
 
 * 描述：配置辅助元素
 * 返回：当前 guideController 实例
 
 详见 [Guide](./guide.md)。
+
+### `animate`
+
+`chart.animate()`
+
+* 描述：配置图表的动画
+* 返回：当前 chart 实例
+
+详见 [Animation](./animation.md)。
 
 ### 创建 Geometry 对象
 
@@ -370,7 +400,7 @@ const point = chart.getPosition({ time: '2010-02-02', value: 20 });
 
 ```js
 const obj = chart.getRecord({ x: 100, y: 100 });
-``` 
+```
 
 ### `getSnapRecords`
 
@@ -402,7 +432,7 @@ const obj = chart.getRecord({ x: 100, y: 100 });
 
 ```js
 const obj = chart.getSnapRecords({x: 100, y: 100});
-``` 
+```
 
 ### `getLegendItems`
 
@@ -441,3 +471,6 @@ const obj = chart.getSnapRecords({x: 100, y: 100});
 * 描述：隐藏当前 tooltip
 * 返回：当前 chart 实例
 
+## 事件说明
+
+F2 没有提供事件机制，用户可以直接通过监听 `canvas` DOM 上的事件进行自定义交互行为。

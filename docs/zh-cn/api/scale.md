@@ -1,9 +1,11 @@
 # Scale
 
+---
+
 度量 Scale，是数据空间到图形空间的转换桥梁，负责原始数据到 [0, 1] 区间数值的相互转换工作。针对不同的数据类型对应不同类型的度量。
 
 根据数据的类型，F2 支持以下几种度量类型：
-  
+
 + **identity**，常量类型的数值，也就是说数据的某个字段是不变的常量；
 + **linear**，连续的数字 [1, 2, 3, 4, 5]；
 + **cat**，分类, ['男','女']；
@@ -70,7 +72,7 @@ chart.source(data, defs);
 
 用于指定坐标轴上刻度点的文本信息，当用户设置了 ticks 就会按照 ticks 的个数和文本来显示。
 
-#### 代码示例 
+#### 代码示例
 
 ```js
 chart.scale('aqi',  {
@@ -85,7 +87,7 @@ chart.scale('aqi',  {
 
 ### linear
 
-属性名| 说明 
+属性名| 说明
 ----|----
 alias | 别名
 nice | 默认为 true，用于优化数值范围，使绘制的坐标轴刻度线均匀分布。例如原始数据的范围为 [3, 97]，如果 nice 为 true，那么就会将数值范围调整为 [0, 100]
@@ -111,7 +113,7 @@ values | 具体的分类的值，一般用于指定具体的顺序和枚举的�
 `values` 属性常用于 2 个场景：
 
 1. 需要制定分类的顺序时，例如：c 字段有'最大','最小'和'适中'3种类型，我们想指定这些数值在坐标轴或者图例上的显示顺序时：
-    
+
 ```js
 const defs = {
   c: {
@@ -120,10 +122,12 @@ const defs = {
   }
 };
 ```
-  
+
 2. 数据字段中的数据是数值类型，但是需要转换成分类类型，**这个时候需要注意原始数据必须是索引值**。
 
-```js
+<canvas id="c1"></canvas>
+
+```js+
 const data = [
   { month: 0, tem: 7, city: 'Tokyo' },
   { month: 1, tem: 6.9, city: 'Tokyo' },
@@ -155,8 +159,6 @@ chart.interval().position('month*tem').color('month');
 chart.render();
 ```
 
-![image](https://zos.alipayobjects.com/skylark/97e5078a-45b9-4db6-8d51-db506eaa2444/attach/3378/1aea882afb2ef64d/image.png)
-
 
 ### timeCat
 
@@ -174,3 +176,13 @@ formatter | 回调函数，用于格式化坐标轴刻度点的文本显示，�
 ticks | 用于指定坐标轴上刻度点的文本信息，当用户设置了 ticks 就会按照 ticks 的个数和文本来显示。
 
 **注意：`mask` 和 `formatter` 这两个属性不可共用，如果同时设置了，会根据 `formatter` 进行格式化，`mask` 属性将不生效。**
+
+**性能小提示：**
+
+当图表的数据源已经过排序，可以通过在列定义中设置 `sortable: false` 来提升性能，默认情况下，会对 timeCat 类型的度量进行数据排序操作。
+
+```js
+chart.scale('fieldName', {
+  sortable: false
+})
+```

@@ -1,8 +1,11 @@
+
 # Coordinate
+
+---
 
 设置坐标系，F2 支持两种坐标系：笛卡尔坐标系和极坐标系，默认使用笛卡尔坐标系。
 
-## API
+## 配置坐标系
 
 ### 直角坐标系
 
@@ -31,6 +34,7 @@ chart.coord('polar', {
   innerRadius: {Number}, // 内环半径，数值为 0 - 1 范围
   radius: {Number} // 半径，数值为 0 - 1 范围
 });
+
 ```
 
 ## 获取坐标系对象
@@ -44,19 +48,19 @@ chart.coord('polar', {
 | start   | Object  | 坐标系的起始点，F2 图表的坐标系原点位于左下角 |
 | end     | Object  | 坐标系右上角的画布坐标 |
 | transposed | Boolean  | 是否发生转置，true 表示发生了转置 |
-| isRect  | Boolean  | 是否是直角坐标系，直角坐标系下为 true | 
+| isRect  | Boolean  | 是否是直角坐标系，直角坐标系下为 true |
 
 2. 极坐标系
 
 | 属性名 | 类型 | 解释 |
 | -------- | -------- | -------- |
-| startAngle | Number | 极坐标的起始角度，弧度制 | 
+| startAngle | Number | 极坐标的起始角度，弧度制 |
 | endAngle | Number | 极坐标的结束角度，弧度制 |
 | innerRadius | Number | 绘制环图时，设置内部空心半径，相对值，0 至 1 范围 |
 | radius | Number | 设置圆的半径，相对值，0 至 1 范围 |
 | isPolar | Boolean | 判断是否是极坐标，极坐标下为 true |
 | transposed | Boolean | 是否发生转置，true 表示发生了转置 |
-| center | Object | 极坐标的圆心所在的画布坐标 | 
+| center | Object | 极坐标的圆心所在的画布坐标 |
 | circleRadius | Number | 极坐标的半径值 |
 
 
@@ -64,9 +68,9 @@ chart.coord('polar', {
 
 ### 环图
 
-<img src="https://gw.alipayobjects.com/zos/rmsportal/vcskeyyxWlRUwbUZVnng.png" style="width: 50%;">
+<canvas id="ring"></canvas>
 
-```js
+```js+
 const data = [
   { name: '芳华', proportion: 0.4, a: '1' },
   { name: '妖猫传', proportion: 0.2, a: '1' },
@@ -76,13 +80,15 @@ const data = [
   { name: '其他', proportion: 0.02, a: '1' },
 ];
 const chart = new F2.Chart({
-  id: 'c1',
+  id: 'ring',
   width: 300,
   height: 300 * 0.64,
   pixelRatio: window.devicePixelRatio,
 });
 chart.source(data);
-chart.legend(false);
+chart.legend({
+  position: 'right'
+});
 chart.coord('polar', {
   transposed: true,
   innerRadius: 0.7,
@@ -106,9 +112,9 @@ chart.render();
 
 ### 半圆
 
-<img src="https://gw.alipayobjects.com/zos/rmsportal/eYRCSTQZQknqfcIIMsKT.png" style="width: 50%;">
+<canvas id="pie"></canvas>
 
-```js
+```js+
 const data = [
   { name: '芳华', proportion: 0.4, a: '1' },
   { name: '妖猫传', proportion: 0.2, a: '1' },
@@ -118,13 +124,16 @@ const data = [
   { name: '其他', proportion: 0.02, a: '1' },
 ];
 const chart = new F2.Chart({
-  id: 'c1',
+  id: 'pie',
   width: 300,
   height: 300 * 0.64,
   pixelRatio: window.devicePixelRatio,
 });
 chart.source(data);
-chart.legend(false);
+chart.legend({
+  position: 'bottom',
+  align: 'center'
+});
 chart.coord('polar', {
   transposed: true,
   startAngle: -Math.PI,
@@ -146,4 +155,3 @@ chart
 
 chart.render();
 ```
-

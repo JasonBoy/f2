@@ -31,7 +31,7 @@ Scale 的功能非常简单，但是在 F2 的数据处理流程中起着非常�
 
 2. 连续数据（时间也是一种连续数据类型）
 
-Example: 
+Example:
 
 ```js
 const data = [
@@ -46,7 +46,7 @@ const data = [
 chart.scale({
   month: {
     alias: '月份' // 为属性定义别名
-  }, 
+  },
   temperature: {
     alias: '温度' // 为属性定义别名
   }
@@ -137,7 +137,7 @@ chart.source(data, {
 
 chart.point().position('name*score').color('name');
 chart.render();
-``` 
+```
 
 <img src="https://gw.alipayobjects.com/zos/rmsportal/mQVOhgkaViFkGojDREHR.png" style="width:400px">
 
@@ -191,11 +191,10 @@ chart.scale('type', {
 
 `TimeCat` 度量对应时间数据，该类型默认会对数值进行排序。
 
-`TimeCat` 是 `Cat` 度量的子类，除了支持所有通用的属性和 `Cat` 度量的属性外也有自己的属性: 
+`TimeCat` 是 `Cat` 度量的子类，除了支持所有通用的属性和 `Cat` 度量的属性外也有自己的属性:
 
 ```js
 {
   mask: {String}, // 指定时间的显示格式，默认：'YYYY-MM-DD'
 }
 ```
-

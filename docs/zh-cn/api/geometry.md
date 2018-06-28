@@ -1,6 +1,8 @@
-# Geom 
+# Geometry
 
-几何标记对象，决定了图表的类型，具体的概念介绍请参见 [Geom](../chart-concept/geometry.md)。
+---
+
+几何标记对象，决定了图表的类型，具体的概念介绍请参见 [Geom](../tutorial/geometry.md)。
 
 语法实例：
 
@@ -88,6 +90,20 @@ chart.line({
 | ------------------- | -------------------  |
 | <img src="https://gw.alipayobjects.com/zos/rmsportal/ZQqwUCczalrKqGgagOVp.png" style="width: 400px"> | <img src="https://gw.alipayobjects.com/zos/rmsportal/yPswkaXvUpCYOdhocGwB.png" style="width: 400px"> |
 
+### `connectNulls`
+
+- 参数类型：Boolean
+- 描述：用于设置是否将空数据连接起来（用于 line，area 以及 path 类型）
+- 默认值： false
+
+```js
+chart.line({
+  connectNulls: true // 将空数据连接
+});
+```
+
+详见 [demo](https://antv.alipay.com/zh-cn/f2/3.x/demo/line/connect-null.html)。
+
 ## 方法
 
 ### position
@@ -105,7 +121,7 @@ line().position([ 'x', 'y' ]);
 
 以 `chart.point().position('x*y')` 为例，point 代表图形，即最后需要生成点图，而 position 代表位置，position('x*y') 代表数据在图形中的位置由 x 和 y 这两个维度的变量决定，x * y 的数据处理结果可以理解为：
 
-![image](https://gw.alipayobjects.com/zos/rmsportal/EcuDeyeTOsztVOuxmZPe.png)
+<img src="https://gw.alipayobjects.com/zos/rmsportal/EcuDeyeTOsztVOuxmZPe.png" style="width: 50%;">
 
 (x1, y1) 这样的数值对，最后就会被转换为画布上对应的坐标点。
 
@@ -180,7 +196,7 @@ chart.point().position('x*y').color('red'); // 所有点用红色渲染
     if(value === 1) {
       return 'red'
     }
-  
+
     return 'blue';
   });
   ```
@@ -207,15 +223,15 @@ point().shape('type', (type) => { // 回调函数
 
 - `shape`: String
 
-  只支持接收一个参数，指定几何图像对象绘制的形状。下表列出了不同的 geom 几何图形对象支持的 shape 形状：
+只支持接收一个参数，指定几何图像对象绘制的形状。下表列出了不同的 geom 几何图形对象支持的 shape 形状：
 
 geom 类型 | shape 类型 | 解释
 -------|---------|----
 point | 'circle', 'hollowCircle', 'rect' | 默认为 'circle'
 line | 'line', 'smooth', 'dash'| dash：虚线，smooth： 平滑线
 area | 'area', 'smooth' | 填充内容的区域图
-interval | 'rect' | 
-polygon | 'polygon' | 
+interval | 'rect' |
+polygon | 'polygon' |
 schema | 'candle'| 目前仅 K 线图
 
 ##### 代码示例

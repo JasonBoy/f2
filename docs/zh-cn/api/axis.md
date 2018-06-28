@@ -1,5 +1,7 @@
 # Axis
 
+---
+
 坐标轴配置。F2 的坐标轴的组成如下：
 
 <img src="https://gw.alipayobjects.com/zos/rmsportal/YhhBplZmzxzwvUBeEvPE.png" style="width: 500px;">
@@ -48,7 +50,7 @@
 | `top`     | Boolean     | 调整图层层级，true 表示展示在最上层图形，false 表示展示在最下层图形 |
 
 
-注意：grid 和 label 为回调函数时，返回值必须是对象。
+**注意：grid 和 label 为回调函数时，返回值必须是对象!**
 
 示例：
 
@@ -68,7 +70,7 @@ chart.axis('field', {
     length: 5,// 刻度线长度
   },
   // 0％ 处的栅格线着重显示
-  grid: (text, index) => {
+  grid: (text, index, total) => {
     if(text === '0%') {
       return {
         stroke: '#efefef'
@@ -94,3 +96,7 @@ chart.axis('field', {
   }
 });
 ```
+
+## DEMO
+
+详见 [坐标轴使用](https://antv.alipay.com/zh-cn/f2/3.x/demo/index.html#_%E5%9D%90%E6%A0%87%E8%BD%B4-%E4%BD%BF%E7%94%A8)。
