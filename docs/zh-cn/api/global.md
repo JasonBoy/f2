@@ -1,5 +1,7 @@
 # Global
 
+---
+
 Global 是 F2 中的全局配置项，全局配置项包含了以下内容：
 
 * 图表本身的一些默认属性，如边框、屏幕像素比、默认字体等
@@ -116,7 +118,7 @@ const Theme = {
 `Global.setTheme(cfg)`
 
 - cfg: Object
-  
+
   用户自定义的主题配置。
 
 常用配置示例

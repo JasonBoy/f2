@@ -1,18 +1,22 @@
-# gesture
-用于图表绑定图表上的手势事件。该方法会返回 gestureController 。除了支持系统基础事件  touchstart 、 touchmove 、touchend。还支持复杂的手势，基于手势库 [hammerjs](https://github.com/hammerjs/hammer.js)。
+# Gesture
+
+---
+
+用于图表绑定图表上的手势事件。该方法会返回 gestureController。除了支持系统基础事件 touchstart、touchmove、touchend，还支持复杂的手势，基于手势库 [hammerjs](https://github.com/hammerjs/hammer.js)。
 
 ![image.png | left | 827x324](https://cdn.yuque.com/yuque/0/2018/png/104396/1524466228977-0589fe3d-2cef-4d42-946f-ae54f2dfb18b.png "")
 
 ## 如何引入使用插件
 
-Gesture作为 F2 的插件，完整版不包含该手势插件，如果需要使用的话，需要先将该组件注册入 Chart 类或者 Chart 实例。
-`hammerjs`  压缩文件大小 20k。 GZIP 后大小 7.3k
+Gesture 作为 F2 的插件，完整版不包含该手势插件，如果需要使用的话，需要先将该组件注册入 Chart 类或者 Chart 实例。
+
+`hammerjs`  压缩文件大小 20k。 GZIP 后大小 7.3k。
 
 ```javascript
 const F2 = require('@antv/f2/lib/core');
 const Gesture = require('@antv/f2/lib/plugin/gesture');
 // 1.全局注册，也可以给 chart 的实例注册
-F2.Chart.plugins.register(Gesture); 
+F2.Chart.plugins.register(Gesture);
 // 2.给具体的 chart 实例注册
 const chart = new F2.Chart({
   id: 'canvas',
@@ -20,25 +24,25 @@ const chart = new F2.Chart({
 });
 ```
 
-## api
+## API
 
 ```javascript
 // 加载初始化手势插件
-chart.gesture({
+chart.pluginGesture({
   gesture: {},
   hammerOptions: {},
   options: {},
 });
 ```
 
-#### 参数
-* `gesture` : Object
-      需要绑定的手势事件，以事件名为 key的回调方法。
-      回调事件的第一个参数，data是手势事件触发中心点坐标对应的图形数据点。
-      回调事件的第二个参数，event是手势事件对象。三个基础手势事件放回的是[[touchEvent](https://developer.mozilla.org/zh-CN/docs/Web/API/TouchEvent)]。hammer手势返回的事件是[[eventObject](http://hammerjs.github.io/api/#event-object)]。
+### 参数
+
+* `gesture`: Object
+
+需要绑定的手势事件，配置的属性为以事件名为 key 的回调方法。
 
 ```javascript
-pluginGesture: {
+ gesture: {
   touchstart(data, event) {
     console.log('touchstart')
   },
@@ -47,12 +51,16 @@ pluginGesture: {
   }
 }
 ```
+  1. 回调事件的第一个参数，data 是手势事件触发中心点坐标对应的图形数据点。
+  2. 回调事件的第二个参数，event 是手势事件对象。三个基础手势事件返回的是 [touchEvent](https://developer.mozilla.org/zh-CN/docs/Web/API/TouchEvent)。hammer 手势返回的事件是 [eventObject](http://hammerjs.github.io/api/#event-object)。
 
-* `hammerOptions` : Object 
-      传递给hammer的[参数配置](http://hammerjs.github.io/api/#hammer.defaults)。一般不需要配置。
+* `hammerOptions`: Object
 
-* `options` : Object
-      手势插件的配置，配置如下
+传递给 hammer 的[参数配置](http://hammerjs.github.io/api/#hammer.defaults)。一般不需要配置。
+
+* `options`: Object
+
+手势插件的配置，配置如下
 
 ```javascript
 options: {

@@ -1,4 +1,3 @@
-
 # Legend
 
 ---
@@ -336,4 +335,4 @@ chart.legend({
 
 ## DEMO
 
-详见 [Legend 使用](https://antv.alipay.com/zh-cn/f2/3.x/demo/index.html#_Legend-%E4%BD%BF%E7%94%A8)。
+详见 [Legend 使用](https://antv.alipay.com/zh-cn/f2/3.x/demo/index.html#_Legend-使用)。

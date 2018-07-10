@@ -1,11 +1,13 @@
 # 绘图属性
 
+---
+
 由于 F2 使用的是 canvas，绘制的所有图形都支持 canvas 的属性，本章列出常用的属性，详细信息参考[ canvas 属性](http://www.w3school.com.cn/tags/html_ref_canvas.asp)。
 
 ## 通用属性
 
-* `fill` 设置用于填充绘画的颜色、渐变或模式；
-* `stroke` 设置用于笔触的颜色、渐变或模式；
+* `fill` 设置用于填充绘画的颜色、渐变或纹理；
+* `stroke` 设置用于笔触的颜色、渐变或纹理；
 * `shadowColor` 设置用于阴影的颜色；
 * `shadowBlur`  设置用于阴影的模糊级别；
 * `shadowOffsetX` 设置阴影距形状的水平距离；
@@ -38,8 +40,9 @@ F2 对图形属性进行了缩写
 
 ## 文本属性
 
-* [`textAlign`](http://www.w3school.com.cn/tags/canvas_textalign.asp) 设置文本内容的当前对齐方式, 支持的属性：center|end|left|right|start；
-* [`textBaseline`](http://www.w3school.com.cn/tags/canvas_textbaseline.asp)  设置在绘制文本时使用的当前文本基线, 支持的属性:top|middle|bottom。
+* [`textAlign`](http://www.w3school.com.cn/tags/canvas_textalign.asp) 设置文本内容的当前对齐方式, 支持的属性：center|end|left|right|start
+* [`textBaseline`](http://www.w3school.com.cn/tags/canvas_textbaseline.asp)  设置在绘制文本时使用的当前文本基线, 支持的属性:top|middle|bottom
+* `rotate`: 设置文本旋转的角度，单位为弧度
 
 **！注意：**
 
@@ -50,4 +53,3 @@ F2 提供了额外的几个文本属性，便于用户设置字体，具体的�
 * `fontWeight` 对应 font-weight；
 * `fontSize` 对应 font-size；
 * `fontFamily` 对应 font-family；
-

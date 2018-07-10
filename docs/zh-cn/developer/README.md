@@ -12,7 +12,7 @@ F2 3.1 版本同之前的 3.0 版本主要有以下区别：
 
 ## 其他
 
-* [插件 Plugin](./plugin.md)
-* [自定义 Shape](./shape.md)
-* [绘制引擎 G](./graphic.md)
-* [开源贡献 Contributing](./contributing.md)
+* [插件 Plugin](developer/plugin.md)
+* [自定义交互行为](develop/interaction.md)
+* [自定义 Shape](developer/shape.md)
+* [开源贡献 Contributing](developer/contributing.md)

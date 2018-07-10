@@ -1,4 +1,6 @@
-# Shape
+# 自定义 Shape
+
+---
 
 **获取方式：`F2.Shape`**
 
@@ -10,7 +12,7 @@
 
 ```js
 const Shape = F2.Shape;
-const shapeObj = Shape.registerShape('geomType', 'shapeName', { 
+const shapeObj = Shape.registerShape('geomType', 'shapeName', {
   getPoints(pointInfo) {
     // 获取每种 shape 绘制的关键点
   },
@@ -64,7 +66,7 @@ schema | schema 作为一种自定义的几何图形，在 F2 中默认提供了
 
 该参数包含经过图形映射后的所有数据以及该数据对应的原始数据，结构如下图所示：
 
-<img src="https://gw.alipayobjects.com/zos/rmsportal/GIutZIjQWLrTeLxgQNMJ.png" width="50%">
+<img src="https://gw.alipayobjects.com/zos/rmsportal/GIutZIjQWLrTeLxgQNMJ.png" style="width: 50%;">
 
 * 原始数据存储于 `cfg.origin._origin` 中；
 * 通过 getPoints 计算出的图形关键点都储存于 points 中；
@@ -85,7 +87,7 @@ Shape.registerShape('interval', 'rect', {
     // ...
     path = this.parsePath(path);
     // ...
-    // 
+    //
     return shape; // 返回最后绘制的 shape
   }
 });
@@ -131,12 +133,12 @@ Shape.registerShape('interval', 'rect', {
 
 ## 代码示例
 
-<img src="https://gw.alipayobjects.com/zos/rmsportal/GvaABgxSihAhupbppGpL.png" style="width: 490px;"> 
+<canvas id="mountNode"></canvas>
 
-```js
+```js+
 const Shape = F2.Shape;
 Shape.registerShape('interval', 'triangle', {
-  getPoints(cfg) {
+  getPoints: function(cfg) {
     const x = cfg.x;
     const y = cfg.y;
     const y0 = cfg.y0;
@@ -147,7 +149,7 @@ Shape.registerShape('interval', 'triangle', {
       { x: x + width / 2, y: y0 }
     ]
   },
-  draw(cfg, group) {
+  draw: function(cfg, group) {
     const points = this.parsePoints(cfg.points); // 将0-1空间的坐标转换为画布坐标
     const polygon = group.addShape('polygon', {
       attrs: {
@@ -173,9 +175,9 @@ const data = [
 
 const chart = new F2.Chart({
   id: 'mountNode',
-  width: 400,
-  height : 200,
-  pixelRatio: window.devicePixelRatio,
+  width: 500,
+  height: 320,
+  pixelRatio: window.devicePixelRatio
 });
 
 chart.source(data);

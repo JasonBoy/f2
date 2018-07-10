@@ -1,8 +1,10 @@
 # Plugin
 
+---
+
 F2 提供插件机制用于扩展图表的功能，该机制可以帮助用户在图表创建的各个阶段定制或更改图表的默认行为。
 
-目前默认提供了 legend、guide、tooltip 以及动画（群组以及精细动画两个版本）这三种插件。
+目前默认提供了 legend、guide、tooltip 以及动画（群组以及精细动画两个版本）这四种插件。
 
 F2 在 Chart 类上注册一个静态属性 Chart.plugins, 使用发布-订阅模式，在 chart 的生命周期中通知注册的各个插件进行各自的操作。
 
@@ -16,16 +18,17 @@ F2 在 Chart 类上注册一个静态属性 Chart.plugins, 使用发布-订阅�
 - `clearInner` 清空图层
 - `repaint` 重绘
 
+
 ## 如何自定义插件
 
-参考： [Guide 插件](https://github.com/antvis/f2/blob/master/src/plugin/guide.js)
+插件的实现非常简单，只需要在需要的生命周期节点定义具体的行为即可，可参考： [Guide 插件](https://github.com/antvis/f2/blob/master/src/plugin/guide.js)
 
 ```js
 const plugin = {
     init(chart) {
-       // do something when initialize the chart 
+       // do something when initialize the chart
     }
-};   
+};
 ```
 
 ## 如何注册/使用插件
@@ -36,9 +39,9 @@ const plugin = {
 const plugin1 = { /* plugin implementation */ };
 const plugin2 = { /* plugin implementation */ };
 // 全局注册插件 plugin1，所有创建的 chart 实例都默认注册上
-Chart.plugins.register(plugin1); 
+Chart.plugins.register(plugin1);
 // 全局注册多个插件
-Chart.plugins.register([ plugin1, plugin2 ]); 
+Chart.plugins.register([ plugin1, plugin2 ]);
 ```
 
 2. 在 chart 实例上注册
@@ -58,7 +61,22 @@ const chart2 = new Chart({
 // chart3 doesn't use "plugin"
 const chart3 = new Chart({});
 ```
+## 注销插件
 
-- `Chart.plugins.unregister(plugins)` 注销 plugins
-- `Chart.plugins.clear()` 清除插件
-- `Chart.plugins.getAll()`  获取注册的所有插件
+`Chart.plugins.unregister(plugins)` 注销 plugins
+
+## 清除插件
+
+`Chart.plugins.clear()` 清除插件
+
+## 获取注册的所有插件
+
+`Chart.plugins.getAll()`  获取注册的所有插件
+
+## 现有插件
+
+- [Tooltip](../api/tooltip.md)
+- [Legend](../api/legend.md)
+- [Guide](../api/guide.md)
+- [Animation](../api/animation.md)
+- [Gesture](../api/gesture.md)

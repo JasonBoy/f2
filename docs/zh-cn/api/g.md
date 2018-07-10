@@ -1,4 +1,7 @@
-# 绘图引擎
+# 绘图引擎 G
+
+---
+
 F2 3.1 版本之前底层直接采用原生 Canvas 绘制，虽然在性能上占据优势，但是过于底层，api 粗糙，加上即时绘制无状态无对象特性，使得它内部的图形不支持动画更不支持任何交互事件。于是在 3.1 版本我们引入了全新的绘图引擎 G，它具备：
 
 * 层次化结构
@@ -977,7 +980,7 @@ new G.Shape.Text({
     fontVariant: 'normal',
     fill: 'red', // html5 canvas 绘图属性
     lineWidth: 1, // html5 canvas 绘图属性
-    rotate: Math.PI // 文本旋转弧度
+    rotate: Math.PI // 文本旋转，以弧度为单位
   }
 });
 ```

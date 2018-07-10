@@ -1,4 +1,3 @@
-
 # Guide
 
 ---
@@ -18,7 +17,7 @@ require('@antv/f2/lib/component/guide'); // 加载全部的 guide 组件
 require('@antv/f2/lib/component/guide/arc'); // 只加载 Guide.Arc 组件
 require('@antv/f2/lib/component/guide/html'); // 只加载 Guide.Html 组件
 require('@antv/f2/lib/component/guide/text'); // 只加载 Guide.Text 组件
-require('@antv/f2/li/component/guide/rect'); // 只加载 Guide.Rect 组件
+require('@antv/f2/lib/component/guide/rect'); // 只加载 Guide.Rect 组件
 require('@antv/f2/lib/component/guide/line'); // 只加载 Guide.Line 组件
 
 // 第二步：加载插件 Guide
@@ -57,7 +56,7 @@ chart.guide().line({
 
 #### 示例
 
-[Guide.Line](../demo/guide/line.html)。
+[Guide.Line](https://antv.alipay.com/zh-cn/f2/3.x/demo/guide/line.html)。
 
 #### 参数
 
@@ -104,7 +103,7 @@ chart.guide().line({
 
 - `style`: Object
 
-用于设置辅助线的显示样式，详见[绘图属性](./canvas.html)。
+用于设置辅助线的显示样式，详见[绘图属性](./canvas.md)。
 
 ### Text
 
@@ -131,7 +130,7 @@ chart.guide().text({
 
 #### 示例
 
-[Guide.Text](../demo/guide/text.html)。
+[Guide.Text](https://antv.alipay.com/zh-cn/f2/3.x/demo/guide/text.html)。
 
 #### 参数
 
@@ -219,7 +218,7 @@ chart.guide().tag({
 
 #### 示例
 
-[Guide.Tag](../demo/guide/tag.html)。
+[Guide.Tag](https://antv.alipay.com/zh-cn/f2/3.x/demo/guide/tag.html)。
 
 #### 参数
 
@@ -329,7 +328,7 @@ chart.guide().rect({
 
 #### 示例
 
-[Guide.Rect](../demo/guide/rect.html)。
+[Guide.Rect](https://antv.alipay.com/zh-cn/f2/3.x/demo/guide/rect.html)。
 
 #### 参数
 
@@ -398,7 +397,7 @@ chart.guide().html({
 
 #### 示例
 
-[Guide.Html](../demo/guide/html.html)。
+[Guide.Html](https://antv.alipay.com/zh-cn/f2/3.x/demo/guide/html.html)。
 
 #### 参数
 
@@ -465,7 +464,7 @@ chart.arc({
 
 #### 示例
 
-[Guide.Arc](../demo/guide/arc.html)。
+[Guide.Arc](https://antv.alipay.com/zh-cn/f2/3.x/demo/guide/arc.html)。
 
 #### 参数
 
@@ -535,7 +534,7 @@ chart.guide().regionFilter({
 
 #### 示例
 
-[Guide.RegionFilter](../demo/guide/regionFilter.html)。
+[Guide.RegionFilter](https://antv.alipay.com/zh-cn/f2/3.x/demo/guide/regionFilter.html)。
 
 #### 参数
 

@@ -36,9 +36,8 @@ $ npm install @antv/f2
 
 ## 文档
 
-- [使用教程](https://antv.alipay.com/zh-cn/f2/3.x/tutorial/index.html)
-- [API](https://antv.alipay.com/zh-cn/f2/3.x/api/index.html)
-- [Gallery](https://antv.alipay.com/zh-cn/f2/3.x/demo/index.html)
+- [Docs](./SUMMARY.md)
+- [Demos](https://antv.alipay.com/zh-cn/f2/3.x/demo/index.html)
 
 ## 快速开始
 

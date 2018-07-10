@@ -1,5 +1,7 @@
 # 动画
 
+---
+
 F2 默认提供了两种动画版本：
 
 1. 群组入场动画
@@ -136,6 +138,9 @@ appear: {
   delay: 1000, // 动画延迟执行时间，单位 ms
   duration: 600 // 动画执行时间，单位 ms
 }
+
+// 或者直接关闭 appear 类型动画
+appear: false
 ```
 
 - `animation`，类型：String/Function，定义动画的具体执行动作
@@ -310,7 +315,7 @@ chart.line().animate({
 
 F2 提供了完善的动画自定义机制，用户可对任意支持动画的图形元素定制不同状态下的动画行为，这里所说的状态即为 appear enter leave update 这四种动画类型。
 
-在 F2 中执行的都是 [Shape(图形)](../developer/graphic.md#Shape) 元素的动画，通过逐帧改变 shape 对象的图形属性来达到动画的效果，以下面圆的移动动画为例：
+在 F2 中执行的都是 [Shape(图形)](./g.html#_Shape) 元素的动画，通过逐帧改变 shape 对象的图形属性来达到动画的效果，以下面圆的移动动画为例：
 
 <img src="https://gw.alipayobjects.com/zos/rmsportal/VsphIrCJSqpILogoZTiS.gif" style="width: 50%;">
 
@@ -329,7 +334,7 @@ circle.animate().to({
 
 ```
 
-各类型 shape 的图形属性说明见 [graphic 图形 api](./developer/graphic.md#Shape)。
+各类型 shape 的图形属性说明见 [graphic 图形 api](./g.html#_Shape)。
 
 F2 会为用户自定义的动画函数传递三个参数，按照顺序，分别为 `shape`、`animateCfg`、`coord`
 
@@ -354,7 +359,7 @@ shape 对象具体提供了以下属性来帮助用户进行操作：
 | `origin`  | shape.get('origin') | Object | 获取当前 shape 的绘制数据以及对应的原始数据记录 |
 | `index`  | shape.get('index') | Number | 获取当前 shape 的索引值，即顺序 |
 
-另外图形属性的获取还可以通过调用 `shape.attr(name)` 方法来获取，更多 shape 对象的方法请阅读 [Shape API](../developer/graphic.md#通用方法)。
+另外图形属性的获取还可以通过调用 `shape.attr(name)` 方法来获取，更多 shape 对象的方法请阅读 [Shape API](./g.html#_通用方法)。
 
 另外对于处理 `update` 更新状态下的 shape 对象，我们还会提供一个 `cacheShape` 属性，该属性为一个 Object 对象，存储的是当前 shape 在上一个状态（数据变更前）的内容，以便于用户进行变更动画的定制，该属性包含的内容如下：
 
@@ -378,7 +383,7 @@ shape 对象具体提供了以下属性来帮助用户进行操作：
 }
 ```
 
-- `coord`，Coord 坐标系对象，表示当前 chart 的坐标系，该对象包含的属性详见 [Coordinate API](./coordinate.md#获取坐标系对象)
+- `coord`，Coord 坐标系对象，表示当前 chart 的坐标系，该对象包含的属性详见 [Coordinate API](./coordinate.html#_获取坐标系对象)
 
 ## 示例
 
@@ -460,4 +465,3 @@ shape 对象具体提供了以下属性来帮助用户进行操作：
     });
   chart.render();
 ```
-
