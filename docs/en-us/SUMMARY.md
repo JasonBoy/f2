@@ -8,7 +8,7 @@
 * [Tutorial](tutorial/README.md)
   * [The grammar of graphics](tutorial/grammar.md)
   * [Understanding F2 charts](tutorial/understanding-f2-charts.md)
-  * [The data format of F2](tutorial/data.md)
+  * [Data](tutorial/data.md)
   * [Scale](tutorial/scale.md)
   * [Geometry](tutorial/geometry.md)
   * [Attribute](tutorial/attribute.md)

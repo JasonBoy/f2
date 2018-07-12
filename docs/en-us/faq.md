@@ -107,13 +107,11 @@ F2 provides 2 solutions:
 
 <img src="https://gw.alipayobjects.com/zos/rmsportal/FFmrEHSufiuzKqojzzyD.png" alt="时间格式" style="width:500px">
 
-// TODO 校验到这里
-
 ## How to interact with charts
 
 #### Description
 
-There are scenes that require the mouse display the relative information when the mouse is located in the chart.There is not any demos or api for interaction.
+There is not any demos or api for interaction, how to interact chart with mouse or touch event?
 
 #### Analyzation
 
@@ -123,15 +121,15 @@ The reason that F2 does not encapsulate interactions is that F2 mainly provides 
 
 F2 supports three ways to interact with charts:
 
-1. `getPosition(record)`: Get the position of the canvas according to the record.
-2. `getRecord(point)`: Get the record information based on the pixel locaiton on the canvas.
-3. `getSnapRecords(point)`: Get nearby data based on location on location.
+1. `getPosition(record)`: Get the position of the canvas according to the data.
+2. `getRecord(point)`: Get the data information based on the pixel locaiton on the canvas.
+3. `getSnapRecords(point)`: Get nearby data based on location.
 
 The difference between `getRecord` and `getSnapRecords` is that the former converts the coordinates of the canvas to the corresponding data regardless of whether there is corresponding data in the user data, and the latter will find the data in the original user data and then return it.
 
 The common steps to obtain information are as follows:
 
-1. Get the coordinate of the clicked canvas
+1. Get the canvas coordinate of the clicked point, you can use [F2.Util.getRelativePosition(point, canvas)](../api/util.html#_getRelativePosition) method to convert.
 
 2. Get the nearby data using `getSnapRecords()`
 
@@ -157,7 +155,7 @@ The common steps to obtain information are as follows:
 
    User can perform any interaction after geting the data.
 
-## How to the gradient color
+## How to set the gradient color?
 
 #### Description
 
@@ -165,28 +163,23 @@ Gradient color is needed in area chart.
 
 #### Solution
 
-There is no shortcut for gradient color in F2, developers need to generate gradient color themselves, see [canvas gradient](http://www.w3school.com.cn/jsref/dom_obj_canvasgradient.asp) for more details.
-
-F2 has multiple ways to set gradient color when declaring a chart.
-
 ```js
- // create a gradient object
+  // create a gradient object
   const canvas = document.getElementById('mountNode');
   const ctx = canvas.getContext('2d');
   const grd = ctx.createLinearGradient(0,0,500,0);
   grd.addColorStop(0,"#293c55");
   grd.addColorStop(1,"#f7f7f7");
 
-
   // set gradient color directly
   chart.area().position('x*y').color(grd);
 
-  // set in style
+  // Or set in style
   chart.area().position('x*y').style({
     fill: grd
   });
 
-  // if there are multiple colors
+  // Or if there are multiple colors
   chart.area().position('x*y').color('type', function(type) {
     if (type === '1') {
       return grd;
@@ -195,7 +188,7 @@ F2 has multiple ways to set gradient color when declaring a chart.
   });
 ```
 
-[Example](../demo/area/gradient.html)
+[Example](https://antv.alipay.com/zh-cn/f2/3.x/demo/area/gradient.html)
 
 ##  Chaotic number on the axis
 
@@ -233,7 +226,9 @@ const data = [
 
 <img src="https://gw.alipayobjects.com/zos/rmsportal/IFtApeUkFWwnrdrodfve.png" style="width:500px" />
 
-## How to display text
+## How to set label for chart?
+
+<img src="https://gw.alipayobjects.com/zos/rmsportal/sgSEITEgjOaCrwdLTUuY.png" style="width: 350px;" />
 
 #### Description
 
@@ -245,7 +240,6 @@ Displaying text on chart is very complicated, different charts are perform diffe
 
 #### Solution
 
-The usage of Guide in F2, see [Guide](../api/chart.html#_guide).
+The usage of Guide in F2, see [Guide](https://antv.alipay.com/zh-cn/f2/3.x/api/guide.html).
 
-[demos](/zh-cn/f2/3.x/demo/column/diy.html)
-
+[demos](https://antv.alipay.com/zh-cn/f2/3.x/demo/guide/text.html)
